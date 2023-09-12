@@ -18,6 +18,7 @@ public abstract class UsuarioMapper {
             @Mapping(target = "password", source = "password"),
             @Mapping(target = "mail", source = "mail"),
             @Mapping(target = "sessionActive", source = "sessionActive"),
+            @Mapping(target = "persona_idPersona2", source = "persona_idPersona2"),
             @Mapping(target = "status", source = "status")
     })
     public abstract UsuariosModel tousuarioModel(Usuario usuarioEntity);

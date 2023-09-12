@@ -32,12 +32,30 @@ public class UsuarioService {
                 .orElseThrow(() -> new ApplicationException(HttpStatus.NOT_FOUND, "NOT_FOUND_USUARIO", "USUARIO does not exist"));
     }
 
+
+
     public UsuariosModel save(UsuariosModel usuariosModel) throws ApplicationException {
+
+        String username = usuariosModel.getUserName();
+        validacionUserName(username);
+
+        String usercontra = usuariosModel.getPassword();
+        if (!usercontra.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*\\S)(?=.*[\\W_]).{8,}$")) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERPASSWORD", "NO estas cumpliendo con las condiciones de la contraseña");
+        }
+
+        String usercorreo = usuariosModel.getMail();
+        if (usercorreo != null){
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERMAIL", "Tu mail debe estar vacio para ser generado");
+        }
+        String generarCorreo = usuarioRepository.generarCorreoElectronico(usuariosModel.getPersona_idPersona2());
+
+        // Guargar si se cumple todoo
         if (usuariosModel.getId() == null){
+            usuariosModel.setMail(generarCorreo);
             return UsuarioMapper.INSTANCE.tousuarioModel(usuarioRepository.save(UsuarioMapper.INSTANCE.tousuarioEntity(usuariosModel)));
         }
-        throw new ApplicationException(HttpStatus.FOUND, "FOUND_USUARIO", "idB" +
-                "ranch is not null");
+        throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_ID", "id is not null");
     }
 
     public UsuariosModel update(UsuariosModel usuariosModel) throws ApplicationException {
@@ -70,4 +88,37 @@ public class UsuarioService {
     }
 
 
+    public Boolean validacionUserName(String username) throws ApplicationException {
+
+        // no estar vacio
+        if (username == null || username.isEmpty()) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERNAME", "El nombre de usuario no puede estar vacío");
+        }
+
+        //longitud maxima 20 y minima 8
+        if (username.length() < 8 || username.length() > 20) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERNAME", "La longitud del nombre de usuario debe estar entre 8 y 20 caracteres");
+        }
+
+        //no contener signos
+        if (!username.matches("^[a-zA-Z0-9]*$")) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERNAME", "El nombre de usuario no debe contener signos");
+        }
+
+        //no duplicar nombre
+        if (usuarioRepository.existsByUserName(username)) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "DUPLICATE_USERNAME", "El nombre de usuario ya está en uso");
+        }
+
+        // al menos un numero
+        if (!username.matches(".*\\d.*")) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERNAME", "El nombre de usuario debe contener al menos un número");
+        }
+
+        // al menos una letra
+        if (!username.matches(".*[A-Z].*")) {
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERNAME", "El nombre de usuario debe contener al menos una letra mayúscula");
+        }
+        return true;
+    }
 }

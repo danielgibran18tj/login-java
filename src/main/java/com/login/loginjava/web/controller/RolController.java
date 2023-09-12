@@ -1,4 +1,4 @@
-package com.login.loginjava.web.controller.ifc;
+package com.login.loginjava.web.controller;
 
 import com.login.loginjava.common.exception.ApplicationException;
 import com.login.loginjava.domain.model.RolModel;

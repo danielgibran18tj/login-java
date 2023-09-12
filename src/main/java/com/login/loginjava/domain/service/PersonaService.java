@@ -35,8 +35,14 @@ public class PersonaService {
     }
 
     public PersonaModel save(PersonaModel personaModel) throws ApplicationException {
+
+
+        String identificacionuser = personaModel.getIdentificacion();
+        if (!identificacionuser.matches("^(?!.*(\\d)(?:\\1{3,})).{10}$")){
+            throw new ApplicationException(HttpStatus.BAD_REQUEST, "INVALID_USERIDENTIFICATION", "NO estas cumpliendo con las condiciones de la identificacion");
+        }
+
         if (personaModel.getId() == null){
-            System.out.println(personaModel);
             return PersonaMapper.INSTANCE.topersonaModel(personaRepository.save(PersonaMapper.INSTANCE.topersonaEntity(personaModel)));
         }
         throw new ApplicationException(HttpStatus.FOUND, "FOUND_PEOPLE", "id persona exist");
@@ -52,7 +58,7 @@ public class PersonaService {
             personaRepository.save(personaEntity1);
             return personaModel;
         }else {
-            throw new ApplicationException( "NOT_FOUND_PEOPLE", "people does not exist");
+            throw new ApplicationException( HttpStatus.FOUND, "NOT_FOUND_PEOPLE", "people does not exist");
         }
     }
 

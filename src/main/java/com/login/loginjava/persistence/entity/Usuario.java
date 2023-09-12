@@ -23,6 +23,9 @@ public class Usuario {
     private String mail;
     private String sessionActive;
 
+
+    @Column(name = "persona_idPersona", nullable = false, length = 15)
+    private Integer persona_idPersona2;
     @ManyToOne
     @JoinColumn(name = "Persona_idPersona2")
     private Persona persona;

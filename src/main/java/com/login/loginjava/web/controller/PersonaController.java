@@ -1,9 +1,8 @@
-package com.login.loginjava.web.controller.ifc;
+package com.login.loginjava.web.controller;
 
 import com.login.loginjava.common.exception.ApplicationException;
 import com.login.loginjava.domain.model.PersonaModel;
 import com.login.loginjava.domain.service.PersonaService;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;

@@ -46,7 +46,7 @@ public class RolService {
             rolRepository.save(rolEntity1);
             return rolModel;
         }else {
-            throw new ApplicationException( "NOT_FOUND_ROL", "ROL does not exist");
+            throw new ApplicationException(HttpStatus.NOT_FOUND, "NOT_FOUND_ROL", "ROL does not exist");
         }
     }
 
