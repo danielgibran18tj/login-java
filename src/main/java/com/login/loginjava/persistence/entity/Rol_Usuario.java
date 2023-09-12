@@ -1,9 +1,12 @@
 package com.login.loginjava.persistence.entity;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "rol_usuarios")

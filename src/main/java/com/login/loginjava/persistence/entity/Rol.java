@@ -1,10 +1,12 @@
 package com.login.loginjava.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Rol {
     @Id
+    @javax.persistence.Id
     @Column(name = "idRol")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;

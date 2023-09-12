@@ -1,9 +1,12 @@
 package com.login.loginjava.persistence.entity;
 
-import jakarta.persistence.Embeddable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 

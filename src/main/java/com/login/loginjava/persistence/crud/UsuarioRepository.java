@@ -7,14 +7,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UsuarioRepository  extends JpaRepository<Usuario, Integer> {
 
     @Query(value = "SELECT GenerarCorreoElectronico(p.nombres, p.apellidos, p.identificacion) " +
-            "FROM Persona p WHERE p.idPersona = :idPersona")
+            "FROM Persona p WHERE p.idPersona = :idPersona", nativeQuery = true)
     String generarCorreoElectronico(@Param("idPersona") Integer idPersona);
 
     boolean existsByUserName(String userName);
+
+    boolean existsByUserNameAndPassword(String userName, String password);
+
+    Optional<Usuario> findUsuarioByUserName(String userName);
 
     /*DELIMITER $$
 

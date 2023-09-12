@@ -6,13 +6,13 @@ import com.login.loginjava.domain.service.PersonaService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -75,14 +75,10 @@ public class PersonaController {
             method = RequestMethod.POST)
     public ResponseEntity<PersonaModel> agg(@RequestBody PersonaModel personaModel) throws ApplicationException {
         PersonaModel personaModel1 = personaService.save(personaModel);
-        try {
-            if (personaModel1 != null){
-                return ResponseEntity.ok(personaModel1);
-            }
-        }catch (Exception e){
-            return ResponseEntity.badRequest().build();
+        if (personaModel1 != null){
+            return ResponseEntity.ok(personaModel1);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return ResponseEntity.badRequest().build();
     }
 
 

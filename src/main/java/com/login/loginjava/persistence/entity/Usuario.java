@@ -1,11 +1,12 @@
 package com.login.loginjava.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Usuario {
+
     @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
@@ -22,7 +25,7 @@ public class Usuario {
     private String password;
     private String mail;
     private String sessionActive;
-
+    private Integer retry;
 
     @Column(name = "persona_idPersona", nullable = false, length = 15)
     private Integer persona_idPersona2;

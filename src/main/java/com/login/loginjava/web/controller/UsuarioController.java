@@ -7,13 +7,13 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 @RestController
 @RequestMapping("/api/usuario")
@@ -73,14 +73,9 @@ public class UsuarioController {
             method = RequestMethod.POST)
     public ResponseEntity<UsuariosModel> agg(@RequestBody UsuariosModel usuariosModel) throws ApplicationException{
         UsuariosModel usuariosModel1 = usuarioService.save(usuariosModel);
-        try {
-            if (usuariosModel1 != null){
-                return ResponseEntity.ok(usuariosModel1);
-            }
-        }catch (Exception e){
-            return ResponseEntity.badRequest().build();
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        if (usuariosModel1 != null){
+            return ResponseEntity.ok(usuariosModel1);
+        }return ResponseEntity.badRequest().build();
     }
 
     @Operation(summary = "Update an existing user")
