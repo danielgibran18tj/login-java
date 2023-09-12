@@ -1,7 +1,6 @@
 package com.login.loginjava.web.security;
 
 import com.login.loginjava.domain.service.UsersDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
