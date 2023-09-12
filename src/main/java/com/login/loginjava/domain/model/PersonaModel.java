@@ -1,4 +1,4 @@
-package com.login.loginjava.domain.service;
+package com.login.loginjava.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,2 +1,9 @@
-package com.login.loginjava.persistence;public class PersonaRepository {
+package com.login.loginjava.persistence.crud;
+
+import com.login.loginjava.persistence.entity.Persona;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 }

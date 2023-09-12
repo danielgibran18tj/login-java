@@ -16,12 +16,12 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Integer idUsuario;
 
     private String userName;
     private String password;
     private String mail;
-    private boolean sessionActive;
+    private String sessionActive;
 
     @ManyToOne
     @JoinColumn(name = "Persona_idPersona2")

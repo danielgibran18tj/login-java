@@ -15,9 +15,12 @@ import java.util.Date;
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSession;
+    private Integer idSession;
 
+    @Column(name = "FechaIngresa", columnDefinition = "date")
     private Date fechaIngreso;
+
+    @Column(name = "FechaCierre", columnDefinition = "date")
     private Date fechaCierre;
 
     @ManyToOne

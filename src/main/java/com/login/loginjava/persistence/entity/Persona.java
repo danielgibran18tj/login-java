@@ -1,5 +1,6 @@
 package com.login.loginjava.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +14,24 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PersonaEntity {
+public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPersona;
+    private Integer idPersona;
 
+    @Column(name = "Nombres", length = 60)
     private String nombres;
+
+    @Column(name = "Apellidos", length = 60)
     private String apellidos;
+
+    @Column(name = "Identificacion", length = 10)
     private String identificacion;
+
+    @Column(name = "FechaNacimiento", columnDefinition = "date")
     private Date fechaNacimiento;
 
     @OneToMany(mappedBy = "persona")
+    @JsonIgnore
     private List<Usuario> usuarios;
 }

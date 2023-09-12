@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RolOpcionesModel {
+public class OpcionesModel {
 
     private Integer id;
     private String nombreOpcion;

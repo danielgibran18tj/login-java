@@ -19,7 +19,7 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;
 
-    @Column(name = "rolName")
+    @Column(name = "rolName", length = 50)
     private String rolName;
 
     @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)

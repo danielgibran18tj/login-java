@@ -1,4 +1,4 @@
-package com.microservicios.clinica_veter_branch_service.web.config;
+package com.login.loginjava.web.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -10,8 +10,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI usersMicroserviceOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Clinica Veterinaria")
+                .info(new Info().title("Login Java")
                         .version("1.0"));
     }
 }
-    //http://localhost:8080/veterinaria/api/swagger-ui/index.html
