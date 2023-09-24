@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Persona {
     @Id
-    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_persona", nullable = false)
     private Integer idPersona;
 
     @Column(name = "Nombres", length = 60)
@@ -33,7 +32,6 @@ public class Persona {
     @Column(name = "FechaNacimiento", columnDefinition = "date")
     private Date fechaNacimiento;
 
-    @OneToMany(mappedBy = "persona")
-    @JsonIgnore
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
 }

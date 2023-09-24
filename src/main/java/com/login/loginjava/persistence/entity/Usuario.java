@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,24 +15,23 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
     private String userName;
     private String password;
     private String mail;
-    private String sessionActive;
-    private Integer retry;
+    private Boolean sessionActive;
 
-    @Column(name = "persona_idPersona", nullable = false, length = 15)
-    private Integer persona_idPersona2;
+    @Column(name = "Persona_idPersona2", nullable = false, length = 15)
+    private Integer personaIdPersona2;
+
     @ManyToOne
-    @JoinColumn(name = "Persona_idPersona2")
+    @JoinColumn(name = "Persona_idPersona2", referencedColumnName = "id_persona", insertable = false, updatable = false)
+    @JsonIgnore
     private Persona persona;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL)
     private List<Rol_Usuario> rolesUsuarios;
 
     private String status;

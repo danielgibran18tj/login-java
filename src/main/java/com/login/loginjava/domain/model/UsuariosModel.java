@@ -14,7 +14,7 @@ public class UsuariosModel {
     private String userName;
     private String password;
     private String mail;
-    private String sessionActive;
+    private Boolean sessionActive;
     private Integer persona_idPersona2;
     //private List<Persona> Persona_idPersona2;
     private String status;
