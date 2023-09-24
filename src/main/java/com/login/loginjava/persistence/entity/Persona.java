@@ -17,6 +17,7 @@ import java.util.List;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_persona", nullable = false)
     private Integer idPersona;
 
     @Column(name = "Nombres", length = 60)
@@ -31,7 +32,6 @@ public class Persona {
     @Column(name = "FechaNacimiento", columnDefinition = "date")
     private Date fechaNacimiento;
 
-    @OneToMany(mappedBy = "persona")
-    @JsonIgnore
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
 }
