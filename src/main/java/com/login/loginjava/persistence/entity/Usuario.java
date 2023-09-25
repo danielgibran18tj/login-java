@@ -30,8 +30,8 @@ public class Usuario {
     @JsonIgnore
     private Persona persona;
 
-    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rol_Usuario> rolesUsuarios;
 
-    private String status;
+    private Boolean status;
 }

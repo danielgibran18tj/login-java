@@ -17,6 +17,6 @@ public class UsuariosModel {
     private Boolean sessionActive;
     private Integer persona_idPersona2;
     //private List<Persona> Persona_idPersona2;
-    private String status;
+    private Boolean status;
 
 }
